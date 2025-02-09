@@ -31,7 +31,7 @@ scrape_configs:
     # scheme defaults to 'http'.
 
     static_configs:
-    - targets: ['localhost:9090']
+    - targets: ['host.docker.internal:9090']
 
   - job_name: 'localhost metrics'
 
@@ -51,4 +51,4 @@ scrape_configs:
       #server: ['prometheus1']
     honor_labels: true
     static_configs:
-      - targets: ['localhost:19999']
+      - targets: ['host.docker.internal:19999']
