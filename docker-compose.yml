@@ -1,0 +1,24 @@
+services:
+    prometheus:
+        image: prom/prometheus
+        volumes:
+            - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+        ports:
+            - '9090:9090'
+        networks:
+          - monitoring
+
+    grafana:
+        image: grafana/grafana
+        ports:
+            - '9091:3000'
+        volumes:
+            - ./tmp/data:/var/lib/grafana
+            - ./grafana/datasource.prometheus.yaml:/etc/grafana/provisioning/datasources/prometheus.yaml
+        environment:
+            - GF_SECURITY_ADMIN_PASSWORD=qweqweqwe1
+        networks:
+          - monitoring
+
+networks:
+  monitoring:
